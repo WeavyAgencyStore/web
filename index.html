@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weavy Agency | Tu tsunami digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0F172A;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        #inicio {
+            position: relative;
+            background-image: url('https://i.imgur.com/jOy9jqO.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        #inicio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.7) 50%, rgba(26, 33, 81, 0.5) 100%);
+            z-index: 1;
+        }
+        
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.7;
+            z-index: 0;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #00F0FF;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            color: #00F0FF;
+        }
+        
+        .service-card, .portfolio-item, .faq-item, .testimonial-card, .team-member {
+            transition: all 0.4s ease;
+            background: rgba(26, 33, 81, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            transform: translateY(0);
+        }
+        
+        .service-card:hover, .portfolio-item:hover, .testimonial-card:hover, .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.5);
+        }
+        
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #00F0FF, #008080);
+        }
+        
+        .cta-button:hover {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+            transform: translateY(-3px) scale(1.05);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #00F0FF, #8A2BE2, #FF1493);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Marquee: Usa la paleta del logo */
+        .marquee-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2, #FF1493, #8A2BE2, #00F0FF);
+            background-size: 200% 100%;
+            animation: gradientBg 15s ease infinite;
+        }
+        
+        @keyframes gradientBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .marquee-container {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 12px 0;
+        }
+        
+        .marquee-track {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            will-change: transform;
+        }
+        
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        
+        .marquee-item {
+            white-space: nowrap;
+            flex-shrink: 0;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .marquee-item i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .marquee-divider {
+            margin: 0 10px;
+            opacity: 0.7;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        .faq-item .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust as needed */
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Animaciones de Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.6, 0.2, 0.1, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animación de Aura para el Hero */
+        @keyframes aura-pulse {
+            0% { text-shadow: 0 0 20px rgba(0, 240, 255, 0.5), 0 0 30px rgba(138, 43, 226, 0.3); }
+            50% { text-shadow: 0 0 30px rgba(0, 240, 255, 0.8), 0 0 45px rgba(138, 43, 226, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(0, 240, 255, 0.5), 0 0 30px rgba(138, 43, 226, 0.3); }
+        }
+
+        .hero-title {
+            animation: aura-pulse 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Blobs decorativos con colores del logo -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="blob" style="width: 400px; height: 400px; top: 10%; left: 5%; background: radial-gradient(circle at center, rgba(0, 240, 255, 0.4), transparent 70%);"></div>
+        <div class="blob" style="width: 500px; height: 500px; top: 60%; left: 70%; background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3), transparent 70%);"></div>
+        <div class="blob" style="width: 450px; height: 450px; top: 40%; left: 30%; background: radial-gradient(circle at center, rgba(255, 20, 147, 0.2), transparent 70%);"></div>
+    </div>
+    
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full bg-[#0F172A] bg-opacity-70 backdrop-blur-lg z-50 py-3 border-b border-[#00F0FF] border-opacity-20">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#inicio">
+                    <img src="https://i.imgur.com/7yeJ8vu.png" alt="Weavy Agency Logo" class="h-12 hover-scale transition-transform">
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#inicio" class="nav-link text-white font-bold">Inicio</a>
+                <a href="#servicios" class="nav-link text-white font-bold">Servicios</a>
+                <a href="#ia" class="nav-link text-white font-bold">Nuestra IA</a>
+                <a href="#portfolio" class="nav-link text-white font-bold">Portafolio</a>
+                <a href="#nosotros" class="nav-link text-white font-bold">Nosotros</a>
+                <a href="#testimonios" class="nav-link text-white font-bold">Testimonios</a>
+                <a href="#faq" class="nav-link text-white font-bold">FAQ</a>
+                <a href="#contacto" class="nav-link text-white font-bold">Contacto</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-white text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0F172A] bg-opacity-95 backdrop-blur-lg w-full absolute top-full left-0 py-4 px-4 border-b border-[#00F0FF] border-opacity-20">
+            <div class="flex flex-col space-y-4">
+                <a href="#inicio" class="text-white font-bold py-2 px-4 hover:bg-[#00F0FF] hover:bg-opacity-20 rounded transition-all">Inicio</a>
+                <a href="#servicios" class="text-white font-bold py-2 px-4 hover:bg-[#00F0FF] hover:bg-opacity-20 rounded transition-all">Servicios</a>
+                <a href="#ia" class="text-white font-bold py-2 px-4 hover:bg-[#00F0FF] hover:bg-opacity-20 rounded transition-all">Nuestra IA</a>
+                <a href="#portfolio" class="text-white font-bold py-2 px-4 hover:bg-[#00F0FF] hover:bg-opacity-20 rounded transition-all">Portafolio</a>
+                <a href="#nosotros" class="text-white font-bold py-2 px-4 hover:bg-[#00F0FF] hover:bg-opacity-20 rounded transition-all">Nosotros</a>
+                <a href="#testimonios" class="text-white font-bold py-2 px-4 hover:bg-[#00F0FF] hover:bg-opacity-20 rounded transition-all">Testimonios</a>
+                <a href="#faq" class="text-white font-bold py-2 px-4 hover:bg-[#00F0FF] hover:bg-opacity-20 rounded transition-all">FAQ</a>
+                <a href="#contacto" class="text-white font-bold py-2 px-4 hover:bg-[#00F0FF] hover:bg-opacity-20 rounded transition-all">Contacto</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Marquee -->
+    <div class="marquee-wrapper mt-20">
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <div class="marquee-item"><i class="fas fa-bolt text-white"></i>"Ads que venden, no que decoran"<span class="marquee-divider">|</span></div>
+                <div class="marquee-item"><i class="fas fa-wave-square text-white"></i>"Marketing que sacude al mundo"<span class="marquee-divider">|</span></div>
+                <div class="marquee-item"><i class="fas fa-water text-white"></i>"Weavy Agency: tu tsunami digital"<span class="marquee-divider">|</span></div>
+                <div class="marquee-item"><i class="fas fa-chart-line text-white"></i>"Resultados, no promesas"<span class="marquee-divider">|</span></div>
+                <div class="marquee-item"><i class="fas fa-rocket text-white"></i>"Impulsa tu negocio al siguiente nivel"<span class="marquee-divider">|</span></div>
+                <div class="marquee-item"><i class="fas fa-bolt text-white"></i>"Ads que venden, no que decoran"<span class="marquee-divider">|</span></div>
+                <div class="marquee-item"><i class="fas fa-wave-square text-white"></i>"Marketing que sacude al mundo"<span class="marquee-divider">|</span></div>
+                <div class="marquee-item"><i class="fas fa-water text-white"></i>"Weavy Agency: tu tsunami digital"<span class="marquee-divider">|</span></div>
+                <div class="marquee-item"><i class="fas fa-chart-line text-white"></i>"Resultados, no promesas"<span class="marquee-divider">|</span></div>
+                <div class="marquee-item"><i class="fas fa-rocket text-white"></i>"Impulsa tu negocio al siguiente nivel"<span class="marquee-divider">|</span></div>
+            </div>
+        </div>
+        <div class="marquee-glow"></div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section id="inicio" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="container mx-auto px-4 z-10 relative text-center flex flex-col items-center justify-center pt-16 md:pt-24">
+            <h1 class="text-5xl md:text-8xl font-black text-white mb-6 leading-tight hero-title">
+                <span class="text-[#00F0FF]">Ads que venden,</span> <br>no que decoran.
+            </h1>
+            <p class="text-xl md:text-2xl text-white max-w-3xl mx-auto mb-10 opacity-90">
+                Se acabó el marketing muerto. Adiós a las fórmulas falsas. <span class="text-[#00F0FF] font-bold">Aquí levantamos marcas</span> con voz de trueno, calle de fuego y estrategia que aplasta.
+            </p>
+            <a href="#contacto" class="cta-button inline-block text-white text-xl md:text-2xl font-black py-4 px-10 rounded-full transition-all">
+                CATCH THE WAVE
+                <i class="fas fa-chevron-right ml-2"></i>
+            </a>
+            
+            <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl w-full">
+                <div class="counter-container text-center p-4 service-card rounded-xl reveal">
+                    <div class="text-4xl font-bold text-[#00F0FF] counter-value" data-target="150">0+</div>
+                    <p class="text-white text-sm mt-2">Clientes satisfechos</p>
+                </div>
+                <div class="counter-container text-center p-4 service-card rounded-xl reveal">
+                    <div class="text-4xl font-bold text-[#8A2BE2] counter-value" data-target="320">0%</div>
+                    <p class="text-white text-sm mt-2">ROI promedio</p>
+                </div>
+                <div class="counter-container text-center p-4 service-card rounded-xl reveal">
+                    <div class="text-4xl font-bold text-[#FF1493]">24/7</div>
+                    <p class="text-white text-sm mt-2">Soporte</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Servicios -->
+    <section id="servicios" class="py-20 relative overflow-hidden bg-[#0D1424]">
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Nuestros <span class="gradient-text">Servicios</span></h2>
+                <p class="text-xl text-white opacity-80 max-w-3xl mx-auto">Soluciones digitales que transforman tu negocio en una fuerza imparable en el mercado.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card rounded-xl p-8 relative reveal">
+                    <div class="w-16 h-16 bg-[#00F0FF] bg-opacity-20 rounded-full flex items-center justify-center mb-6"><i class="fas fa-bullhorn text-2xl text-[#00F0FF]"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Facebook & Instagram Ads</h3>
+                    <p class="text-white opacity-80">Campañas que convierten visitantes en clientes fieles con estrategias probadas y optimización constante.</p>
+                </div>
+                <div class="service-card rounded-xl p-8 relative reveal">
+                    <div class="w-16 h-16 bg-[#8A2BE2] bg-opacity-20 rounded-full flex items-center justify-center mb-6"><i class="fas fa-search text-2xl text-[#8A2BE2]"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Google Ads</h3>
+                    <p class="text-white opacity-80">Domina los resultados de búsqueda y captura clientes cuando están buscando exactamente lo que ofreces.</p>
+                </div>
+                <div class="service-card rounded-xl p-8 relative reveal">
+                    <div class="w-16 h-16 bg-[#FF1493] bg-opacity-20 rounded-full flex items-center justify-center mb-6"><i class="fab fa-tiktok text-2xl text-[#FF1493]"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">TikTok Ads</h3>
+                    <p class="text-white opacity-80">Conquista la plataforma de más rápido crecimiento con contenido viral que resuena con tu audiencia.</p>
+                </div>
+                <div class="service-card rounded-xl p-8 relative reveal">
+                    <div class="w-16 h-16 bg-[#00F0FF] bg-opacity-20 rounded-full flex items-center justify-center mb-6"><i class="fas fa-laptop-code text-2xl text-[#00F0FF]"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Diseño Web</h3>
+                    <p class="text-white opacity-80">Sitios web que no solo impresionan visualmente, sino que convierten visitantes en clientes.</p>
+                </div>
+                <div class="service-card rounded-xl p-8 relative reveal">
+                    <div class="w-16 h-16 bg-[#FF8E6E] bg-opacity-20 rounded-full flex items-center justify-center mb-6"><i class="fas fa-shopping-cart text-2xl text-[#FF8E6E]"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Desarrollo E-commerce</h3>
+                    <p class="text-white opacity-80">Tiendas online potentes que maximizan ventas con experiencias de compra fluidas y seguras.</p>
+                </div>
+                <div class="service-card rounded-xl p-8 relative reveal">
+                    <div class="w-16 h-16 bg-[#8A2BE2] bg-opacity-20 rounded-full flex items-center justify-center mb-6"><i class="fas fa-photo-video text-2xl text-[#8A2BE2]"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Creación de Contenido</h3>
+                    <p class="text-white opacity-80">Contenido visual y escrito que captura la esencia de tu marca y resuena con tu audiencia ideal.</p>
+                </div>
+                 <div class="service-card rounded-xl p-8 relative reveal">
+                    <div class="w-16 h-16 bg-[#4ade80] bg-opacity-20 rounded-full flex items-center justify-center mb-6"><i class="fas fa-users-cog text-2xl text-[#4ade80]"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Implementación de CRM</h3>
+                    <p class="text-white opacity-80">Centraliza y gestiona las relaciones con tus clientes de forma eficiente para potenciar la lealtad y las ventas.</p>
+                </div>
+                <div class="service-card rounded-xl p-8 relative reveal">
+                    <div class="w-16 h-16 bg-[#facc15] bg-opacity-20 rounded-full flex items-center justify-center mb-6"><i class="fas fa-chart-pie text-2xl text-[#facc15]"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Analítica Web y Reportes</h3>
+                    <p class="text-white opacity-80">Tomamos decisiones basadas en datos. Analizamos el rendimiento de tu web y campañas para optimizar tu estrategia.</p>
+                </div>
+                <div class="service-card rounded-xl p-8 relative reveal">
+                    <div class="w-16 h-16 bg-[#a78bfa] bg-opacity-20 rounded-full flex items-center justify-center mb-6"><i class="fas fa-palette text-2xl text-[#a78bfa]"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Branding y Diseño</h3>
+                    <p class="text-white opacity-80">Creamos una identidad de marca sólida y memorable que conecta con tu audiencia y te diferencia de la competencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuestra IA -->
+    <section id="ia" class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 text-center reveal">
+                    <div class="relative inline-block">
+                        <div class="absolute -inset-4 bg-gradient-to-br from-[#00F0FF] to-[#8A2BE2] opacity-30 rounded-full blur-3xl"></div>
+                        <i class="fas fa-robot text-9xl text-white relative z-10 floating" style="text-shadow: 0 0 30px rgba(0, 240, 255, 0.7);"></i>
+                    </div>
+                </div>
+                <div class="md:w-1/2 reveal">
+                    <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Presentamos Nuestra <span class="gradient-text">IA Adaptativa</span></h2>
+                    <p class="text-xl text-white opacity-80 mb-6">Hemos desarrollado una inteligencia artificial revolucionaria que se integra y adapta a tu página web. No es solo un chatbot, es un asistente inteligente que aprende de tus usuarios para personalizar su experiencia y maximizar las conversiones.</p>
+                    <ul class="text-white opacity-80 space-y-4">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-[#00F0FF] mr-3 text-xl"></i><span>Respuestas personalizadas en tiempo real.</span></li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-[#00F0FF] mr-3 text-xl"></i><span>Análisis de comportamiento para optimizar la navegación.</span></li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-[#00F0FF] mr-3 text-xl"></i><span>Incrementa la captación de leads de forma automática.</span></li>
+                    </ul>
+                     <a href="#contacto" class="cta-button inline-block mt-8 text-white text-lg font-bold py-3 px-8 rounded-full transition-all">Implementa la IA en tu web<i class="fas fa-cogs ml-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portafolio -->
+    <section id="portfolio" class="py-20 relative overflow-hidden bg-[#0D1424]">
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Nuestro <span class="gradient-text">Portafolio</span></h2>
+                <p class="text-xl text-white opacity-80 max-w-3xl mx-auto">Hechos, no palabras. Aquí tienes una muestra de los tsunamis digitales que hemos creado.</p>
+            </div>
+            <div class="space-y-16">
+                <div class="portfolio-item rounded-xl p-8 reveal">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="md:w-1/2 lg:w-3/5">
+                             <div class="rounded-lg overflow-hidden border-2 border-[#00F0FF] shadow-lg hover-shadow"><iframe src="https://vivasindolor.shop" class="w-full h-full" style="min-height: 450px;" title="Viva Sin Dolor"></iframe></div>
+                        </div>
+                        <div class="md:w-1/2 lg:w-2/5">
+                            <h3 class="text-3xl font-bold text-white mb-4">Viva Sin Dolor</h3>
+                            <p class="text-white opacity-80 text-lg">E-commerce de alto impacto para un producto de salud y bienestar. Diseñamos un embudo de ventas completamente optimizado para maximizar la tasa de conversión y reducir los costos de adquisición.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item rounded-xl p-8 reveal">
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
+                        <div class="md:w-1/2 lg:w-3/5">
+                             <div class="rounded-lg overflow-hidden border-2 border-[#8A2BE2] shadow-lg hover-shadow"><iframe src="https://weavyplus.github.io/web/" class="w-full h-full" style="min-height: 450px;" title="Weavy Plus"></iframe></div>
+                        </div>
+                        <div class="md:w-1/2 lg:w-2/5">
+                            <h3 class="text-3xl font-bold text-white mb-4">Weavy Plus</h3>
+                            <p class="text-white opacity-80 text-lg">Landing page para un servicio exclusivo de marketing. El diseño se centró en una estética moderna, limpia y persuasiva, con el objetivo principal de capturar leads de alto valor.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item rounded-xl p-8 reveal">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="md:w-1/2 lg:w-3/5">
+                             <div class="rounded-lg overflow-hidden border-2 border-[#FF1493] shadow-lg hover-shadow"><iframe src="https://goprofishing.github.io/web/" class="w-full h-full" style="min-height: 450px;" title="GoPro Fishing"></iframe></div>
+                        </div>
+                        <div class="md:w-1/2 lg:w-2/5">
+                            <h3 class="text-3xl font-bold text-white mb-4">GoPro Fishing</h3>
+                            <p class="text-white opacity-80 text-lg">Sitio web para una marca de accesorios de pesca, enfocado en mostrar productos de alta calidad y generar una comunidad de entusiastas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Nosotros -->
+    <section id="nosotros" class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Quiénes <span class="gradient-text">Somos</span></h2>
+                <p class="text-xl text-white opacity-80 max-w-3xl mx-auto">Un equipo de especialistas digitales obsesionados con resultados y crecimiento exponencial.</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 reveal">
+                    <div class="relative mb-12">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[#00F0FF] to-[#8A2BE2] opacity-30 rounded-xl blur-xl"></div>
+                        <div class="service-card rounded-xl p-8 relative z-10">
+                            <h3 class="text-3xl font-bold text-white mb-6">Nuestra <span class="text-[#00F0FF]">Misión</span></h3>
+                            <p class="text-white opacity-80 mb-6 text-lg">Transformar el marketing digital en una herramienta de crecimiento real para negocios que buscan resultados, no excusas. Creamos estrategias que generan ventas, no solo métricas vacías.</p>
+                            <h3 class="text-3xl font-bold text-white mb-6">Nuestra <span class="text-[#8A2BE2]">Visión</span></h3>
+                            <p class="text-white opacity-80 text-lg">Ser reconocidos como la agencia que revolucionó el marketing digital en Latinoamérica, estableciendo un nuevo estándar donde los resultados y la transparencia son innegociables.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 reveal">
+                    <h3 class="text-3xl font-bold text-white mb-8 text-center md:text-left">Nuestro <span class="gradient-text">Equipo</span></h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="team-member rounded-xl p-8 text-center">
+                            <div class="w-40 h-40 mx-auto bg-gradient-to-br from-[#00F0FF] to-[#8A2BE2] rounded-full mb-6 flex items-center justify-center overflow-hidden relative">
+                                <div class="absolute inset-0 bg-gradient-to-br from-[#00F0FF] to-[#8A2BE2] opacity-70"></div><i class="fas fa-user text-5xl text-white relative z-10"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-2">Axel de la Rosa</h4>
+                            <p class="text-[#00F0FF] text-lg mb-4">CEO & Fundador</p>
+                            <p class="text-white opacity-80 mb-6">Ing. en TI revolucionando el marketing para marcas globales. Especialista en estrategias disruptivas.</p>
+                        </div>
+                        <div class="team-member rounded-xl p-8 text-center">
+                            <div class="w-40 h-40 mx-auto bg-gradient-to-br from-[#8A2BE2] to-[#FF1493] rounded-full mb-6 flex items-center justify-center overflow-hidden relative">
+                                <div class="absolute inset-0 bg-gradient-to-br from-[#8A2BE2] to-[#FF1493] opacity-70"></div><i class="fas fa-user text-5xl text-white relative z-10"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-2">Jared Ortiz</h4>
+                            <p class="text-[#8A2BE2] text-lg mb-4">COO & Estratega Digital</p>
+                            <p class="text-white opacity-80 mb-6">Experto en optimización de procesos y escalado de campañas. Enfoque analítico que transforma.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonios -->
+    <section id="testimonios" class="py-20 relative overflow-hidden bg-[#0D1424]">
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Lo que dicen <span class="gradient-text">Nuestros Clientes</span></h2>
+                <p class="text-xl text-white opacity-80 max-w-3xl mx-auto">Historias reales de empresas que transformaron su presencia digital con nosotros.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card rounded-xl p-8 relative reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#00F0FF] to-[#8A2BE2] rounded-full flex items-center justify-center mr-4"><span class="text-white font-bold text-xl">JV</span></div>
+                        <div><h4 class="text-xl font-bold text-white">Juan Velasco</h4><p class="text-[#00F0FF]">CEO, MexicanaDesign</p></div>
+                    </div>
+                    <div class="text-yellow-300 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-white opacity-80 mb-4">"Weavy Agency transformó completamente nuestra estrategia digital. En solo 3 meses, triplicamos nuestras ventas y redujimos el costo de adquisición en un 40%."</p>
+                    <p class="text-[#00F0FF] font-bold">+300% en ventas</p>
+                </div>
+                <div class="testimonial-card rounded-xl p-8 relative reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#8A2BE2] to-[#FF1493] rounded-full flex items-center justify-center mr-4"><span class="text-white font-bold text-xl">CM</span></div>
+                        <div><h4 class="text-xl font-bold text-white">Carolina Magaña</h4><p class="text-[#8A2BE2]">Fundadora, Marketa Mía</p></div>
+                    </div>
+                    <div class="text-yellow-300 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-white opacity-80 mb-4">"Después de trabajar con tres agencias diferentes, finalmente encontramos a Weavy. Su estrategia en Ads nos permitió llegar a un público que ni siquiera sabíamos que existía."</p>
+                    <p class="text-[#8A2BE2] font-bold">+450% ROI en campañas</p>
+                </div>
+                <div class="testimonial-card rounded-xl p-8 relative reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#FF8E6E] to-[#FF1493] rounded-full flex items-center justify-center mr-4"><span class="text-white font-bold text-xl">CS</span></div>
+                        <div><h4 class="text-xl font-bold text-white">Carlos Sanchez</h4><p class="text-[#FF8E6E]">Director, Freelances</p></div>
+                    </div>
+                    <div class="text-yellow-300 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                    <p class="text-white opacity-80 mb-4">"Lo que más valoro de Weavy es su transparencia. Siempre sé exactamente dónde va mi dinero y qué resultados está generando. Han convertido nuestro e-commerce en una máquina de ventas."</p>
+                    <p class="text-[#FF8E6E] font-bold">+200% en conversiones</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Preguntas <span class="gradient-text">Frecuentes</span></h2>
+                <p class="text-xl text-white opacity-80 max-w-3xl mx-auto">Resolvemos tus dudas para que tomes la mejor decisión para tu negocio.</p>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="faq-item rounded-xl p-6 cursor-pointer reveal">
+                    <div class="flex justify-between items-center"><h3 class="text-xl font-bold text-white">¿En cuánto tiempo veré resultados?</h3><i class="fas fa-chevron-down text-white faq-icon transition-transform"></i></div>
+                    <div class="faq-answer mt-4"><p class="text-white opacity-80">Aunque cada proyecto es único, muchos de nuestros clientes comienzan a ver resultados significativos en los primeros 30 a 90 días. Nuestro enfoque es en ganancias rápidas sostenibles a largo plazo.</p></div>
+                </div>
+                <div class="faq-item rounded-xl p-6 cursor-pointer reveal">
+                    <div class="flex justify-between items-center"><h3 class="text-xl font-bold text-white">¿Qué los diferencia de otras agencias?</h3><i class="fas fa-chevron-down text-white faq-icon transition-transform"></i></div>
+                    <div class="faq-answer mt-4"><p class="text-white opacity-80">Nos obsesionan los resultados, no las métricas de vanidad. Combinamos creatividad con un análisis de datos riguroso y una total transparencia. Además, nuestra IA adaptativa nos da una ventaja tecnológica única en el mercado.</p></div>
+                </div>
+                <div class="faq-item rounded-xl p-6 cursor-pointer reveal">
+                    <div class="flex justify-between items-center"><h3 class="text-xl font-bold text-white">¿Trabajan con empresas de cualquier tamaño?</h3><i class="fas fa-chevron-down text-white faq-icon transition-transform"></i></div>
+                    <div class="faq-answer mt-4"><p class="text-white opacity-80">Sí, trabajamos con una amplia gama de clientes, desde startups ambiciosas hasta empresas consolidadas que buscan innovar. Lo más importante para nosotros es la visión y el deseo de crecer exponencialmente.</p></div>
+                </div>
+                 <div class="faq-item rounded-xl p-6 cursor-pointer reveal">
+                    <div class="flex justify-between items-center"><h3 class="text-xl font-bold text-white">¿Cómo funciona la IA adaptativa?</h3><i class="fas fa-chevron-down text-white faq-icon transition-transform"></i></div>
+                    <div class="faq-answer mt-4"><p class="text-white opacity-80">Nuestra IA se instala en tu sitio web y aprende del comportamiento de tus visitantes. Puede responder preguntas frecuentes, guiar a los usuarios a través del embudo de ventas y recopilar información valiosa para personalizar la experiencia, todo de manera automática y 24/7.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contacto -->
+    <section id="contacto" class="py-20 relative overflow-hidden bg-[#0D1424]">
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="blob" style="width: 500px; height: 500px; top: 10%; right: 5%; background: radial-gradient(circle at center, rgba(0, 240, 255, 0.3), transparent 70%);"></div>
+            <div class="blob" style="width: 600px; height: 600px; bottom: 10%; left: 5%; background: radial-gradient(circle at center, rgba(138, 43, 226, 0.2), transparent 70%);"></div>
+        </div>
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Hablemos de tu <span class="gradient-text">Proyecto</span></h2>
+                <p class="text-xl text-white opacity-80 max-w-3xl mx-auto">Estamos listos para impulsar tu negocio al siguiente nivel. Contáctanos y comencemos a crear tu tsunami digital.</p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/2 w-full reveal">
+                    <div class="service-card rounded-xl p-8 relative text-center">
+                        <h3 class="text-3xl font-bold text-white mb-4">La forma más rápida de empezar</h3>
+                        <p class="text-white opacity-80 mb-8 text-lg">Envíanos un mensaje por WhatsApp. Estamos listos para escucharte y diseñar una estrategia que arrase con tu competencia.</p>
+                        <a href="https://wa.me/523151149026?text=Hola,%20vengo%20de%20su%20sitio%20web%20y%20me%20gustaría%20más%20información" target="_blank" class="inline-block text-white font-bold py-4 px-8 rounded-lg transition-all text-xl bg-green-500 hover:bg-green-600 hover:scale-105">
+                            <i class="fab fa-whatsapp mr-3"></i>Contactar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full reveal">
+                    <div class="service-card rounded-xl p-8 relative">
+                        <h3 class="text-2xl font-bold text-white mb-6">Otras formas de contacto</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start hover-scale">
+                                <div class="w-12 h-12 bg-[#00F0FF] bg-opacity-20 rounded-full flex items-center justify-center mr-4"><i class="fas fa-map-marker-alt text-[#00F0FF]"></i></div>
+                                <div><h4 class="text-lg font-bold text-white">Ubicación</h4><p class="text-white opacity-80">Guadalajara, Jalisco</p></div>
+                            </div>
+                            <div class="flex items-start hover-scale">
+                                <div class="w-12 h-12 bg-[#8A2BE2] bg-opacity-20 rounded-full flex items-center justify-center mr-4"><i class="fas fa-envelope text-[#8A2BE2]"></i></div>
+                                <div><h4 class="text-lg font-bold text-white">Email</h4><a href="mailto:contacto@weavyagency.com" class="text-white opacity-80 hover:text-[#8A2BE2] transition-all">contacto@weavyagency.com</a></div>
+                            </div>
+                            <div class="flex items-start hover-scale">
+                                <div class="w-12 h-12 bg-[#FF1493] bg-opacity-20 rounded-full flex items-center justify-center mr-4"><i class="fas fa-clock text-[#FF1493]"></i></div>
+                                <div><h4 class="text-lg font-bold text-white">Horario</h4><p class="text-white opacity-80">Lunes a Viernes: 9:00 AM - 6:00 PM</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-10 border-t border-[#00F0FF] border-opacity-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                     <a href="#inicio"><img src="https://i.imgur.com/7yeJ8vu.png" alt="Weavy Agency Logo" class="h-10"></a>
+                    <p class="text-white opacity-60 mt-2">Tu tsunami digital</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                    <a href="#servicios" class="text-white hover:text-[#00F0FF] transition-all">Servicios</a>
+                    <a href="#portfolio" class="text-white hover:text-[#00F0FF] transition-all">Portafolio</a>
+                    <a href="#nosotros" class="text-white hover:text-[#00F0FF] transition-all">Nosotros</a>
+                    <a href="#faq" class="text-white hover:text-[#00F0FF] transition-all">FAQ</a>
+                    <a href="#contacto" class="text-white hover:text-[#00F0FF] transition-all">Contacto</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-white opacity-60 text-sm">
+                <p>&copy; 2025 Weavy Agency. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Animación al hacer scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Animación del contador
+                    const counters = entry.target.querySelectorAll('.counter-value');
+                    counters.forEach(counter => {
+                        if (counter.parentElement.classList.contains('visible') && !counter.classList.contains('animated')) {
+                            counter.classList.add('animated');
+                            const target = +counter.getAttribute('data-target');
+                            if (isNaN(target)) return;
+                            const duration = 2000;
+                            const stepTime = Math.abs(Math.floor(duration / target));
+                            let current = 0;
+                            const timer = setInterval(() => {
+                                current += 1;
+                                let symbol = counter.innerHTML.includes('%') ? '%' : '+';
+                                counter.innerText = `${current}${symbol}`;
+                                if (current >= target) {
+                                    clearInterval(timer);
+                                    counter.innerText = `${target}${symbol}`;
+                                }
+                            }, stepTime);
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach((el) => observer.observe(el));
+
+
+        // Menu móvil
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Acordeón de FAQ
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth scroll para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if (!document.getElementById('mobile-menu').classList.contains('hidden')) {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
