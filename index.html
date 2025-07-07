@@ -38,6 +38,13 @@
             background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.7) 50%, rgba(26, 33, 81, 0.5) 100%);
             z-index: 1;
         }
+
+        /* Mobile background fix */
+        @media (max-width: 768px) {
+            #inicio {
+                background-attachment: scroll;
+            }
+        }
         
         .blob {
             position: absolute;
