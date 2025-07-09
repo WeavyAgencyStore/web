@@ -295,6 +295,26 @@
             transform: scale(1.1);
             background: #008080;
         }
+        #whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.7);
+        }
+        #whatsapp-float:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -550,15 +570,15 @@
                             </div>
                             <h4 class="text-2xl font-bold text-white mb-2">Axel de la Rosa</h4>
                             <p class="text-[#00F0FF] text-lg mb-4">CEO & Fundador</p>
-                            <p class="text-white opacity-80 mb-6">Ing. en Tecnologias de la Informacion revolucionando el marketing para marcas globales. Especialista en estrategias disruptivas.</p>
+                            <p class="text-white opacity-80 mb-6">Ingeniero en Tecnologías de la Información, revolucionando el marketing para marcas globales. Especialista en estrategias disruptivas y análisis de datos para un crecimiento exponencial.</p>
                         </div>
                         <div class="team-member rounded-xl p-6 sm:p-8 text-center">
                             <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full mb-6 overflow-hidden relative border-4 border-[#8A2BE2]">
                                 <img src="https://i.imgur.com/cngVfI2.png" alt="Foto de Jared Ortiz" class="w-full h-full object-cover">
                             </div>
                             <h4 class="text-2xl font-bold text-white mb-2">Jared Ortiz</h4>
-                            <p class="text-[#8A2BE2] text-lg mb-4">COO & Tecnico</p>
-                            <p class="text-white opacity-80 mb-6">Experto en optimización de procesos y escalado de campañas. Tecnico oficial de reparaciones de dispositivos celulares.</p>
+                            <p class="text-[#8A2BE2] text-lg mb-4">Técnico Especializado</p>
+                            <p class="text-white opacity-80 mb-6">Técnico especializado en celulares y optimización de hardware. Su enfoque meticuloso asegura que la tecnología detrás de nuestras campañas funcione a la perfección.</p>
                         </div>
                     </div>
                 </div>
@@ -577,7 +597,7 @@
                 <div class="testimonial-card rounded-xl p-8 relative reveal">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 bg-gradient-to-br from-[#00F0FF] to-[#8A2BE2] rounded-full flex items-center justify-center mr-4"><span class="text-white font-bold text-xl">JV</span></div>
-                        <div><h4 class="text-xl font-bold text-white">Neftali Vazquez</h4><p class="text-[#00F0FF]">Terapeuta, Quiropractico</p></div>
+                        <div><h4 class="text-xl font-bold text-white">Juan Velasco</h4><p class="text-[#00F0FF]">CEO, MexicanaDesign</p></div>
                     </div>
                     <div class="text-yellow-300 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-white opacity-80 mb-4">"Weavy Agency transformó completamente nuestra estrategia digital. En solo 3 meses, triplicamos nuestras ventas y redujimos el costo de adquisición en un 40%."</p>
@@ -595,7 +615,7 @@
                 <div class="testimonial-card rounded-xl p-8 relative reveal">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 bg-gradient-to-br from-[#FF8E6E] to-[#FF1493] rounded-full flex items-center justify-center mr-4"><span class="text-white font-bold text-xl">CS</span></div>
-                        <div><h4 class="text-xl font-bold text-white">Josias Barajas</h4><p class="text-[#FF8E6E]">Director, JB Real State</p></div>
+                        <div><h4 class="text-xl font-bold text-white">Carlos Sanchez</h4><p class="text-[#FF8E6E]">Director, Freelances</p></div>
                     </div>
                     <div class="text-yellow-300 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
                     <p class="text-white opacity-80 mb-4">"Lo que más valoro de Weavy es su transparencia. Siempre sé exactamente dónde va mi dinero y qué resultados está generando. Han convertido nuestro e-commerce en una máquina de ventas."</p>
@@ -649,7 +669,7 @@
                     <div class="service-card rounded-xl p-8 relative text-center">
                         <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">La forma más rápida de empezar</h3>
                         <p class="text-white opacity-80 mb-8 text-lg">Envíanos un mensaje por WhatsApp. Estamos listos para escucharte y diseñar una estrategia que arrase con tu competencia.</p>
-                        <a href="https://wa.me/523151149026?text=Hola,%20vengo%20de%20su%20sitio%20web%20y%20me%20gustaría%20más%20información" target="_blank" class="inline-block text-white font-bold py-4 px-8 rounded-lg transition-all text-xl bg-green-500 hover:bg-green-600 hover:scale-105">
+                        <a href="https://wa.me/522941462303?text=Hola,%20vengo%20de%20su%20sitio%20web%20y%20me%20gustaría%20más%20información" target="_blank" class="inline-block text-white font-bold py-4 px-8 rounded-lg transition-all text-xl bg-green-500 hover:bg-green-600 hover:scale-105">
                             <i class="fab fa-whatsapp mr-3"></i>Contactar por WhatsApp
                         </a>
                     </div>
@@ -664,11 +684,11 @@
                             </div>
                             <div class="flex items-start hover-scale">
                                 <div class="w-12 h-12 bg-[#8A2BE2] bg-opacity-20 rounded-full flex items-center justify-center mr-4"><i class="fas fa-envelope text-[#8A2BE2]"></i></div>
-                                <div><h4 class="text-lg font-bold text-white">Email</h4><a href="mailto:contacto@weavyagency.com" class="text-white opacity-80 hover:text-[#8A2BE2] transition-all">contacto@weavyagency.com</a></div>
+                                <div><h4 class="text-lg font-bold text-white">Email</h4><a href="mailto:delarosaaxel365@gmail.com" class="text-white opacity-80 hover:text-[#8A2BE2] transition-all">contacto@weavyagency.com</a></div>
                             </div>
                             <div class="flex items-start hover-scale">
                                 <div class="w-12 h-12 bg-[#FF1493] bg-opacity-20 rounded-full flex items-center justify-center mr-4"><i class="fas fa-clock text-[#FF1493]"></i></div>
-                                <div><h4 class="text-lg font-bold text-white">Horario</h4><p class="text-white opacity-80">Lunes a Viernes: 9:00 AM - 6:00 PM</p></div>
+                                <div><h4 class="text-lg font-bold text-white">Soporte</h4><p class="text-white opacity-80">24/7</p></div>
                             </div>
                         </div>
                     </div>
@@ -699,6 +719,9 @@
         </div>
     </footer>
 
+    <a id="whatsapp-float" href="https://wa.me/522941462303?text=Hola,%20vengo%20de%20su%20sitio%20web%20y%20me%20gustaría%20más%20información" target="_blank">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
     <a id="back-to-top" href="#inicio"><i class="fas fa-arrow-up"></i></a>
     
     <script>
