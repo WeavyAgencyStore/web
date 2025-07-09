@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weavy Agency | Tu tsunami digital</title>
+    <title>Weavy Agency | Agencia de Marketing</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -20,12 +20,30 @@
             overflow-x: hidden;
         }
 
+        /* Custom Scrollbar */
+        body::-webkit-scrollbar {
+            width: 12px;
+        }
+        body::-webkit-scrollbar-track {
+            background: #0F172A;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: #00F0FF;
+            border-radius: 20px;
+            border: 3px solid #0F172A;
+        }
+
         #inicio {
             position: relative;
             background-image: url('https://i.imgur.com/jOy9jqO.jpeg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            animation: breath 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes breath {
+            from { background-size: 100% 100%; }
+            to { background-size: 110% 110%; }
         }
 
         #inicio::before {
@@ -43,6 +61,7 @@
         @media (max-width: 768px) {
             #inicio {
                 background-attachment: scroll;
+                animation: none; /* Disable breath animation on mobile for performance */
             }
         }
         
@@ -91,6 +110,33 @@
             box-shadow: 0 20px 40px rgba(0, 240, 255, 0.3);
             border: 1px solid rgba(0, 240, 255, 0.5);
         }
+
+        .service-card {
+            position: relative;
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0.75rem;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #00F0FF, #8A2BE2) border-box;
+            -webkit-mask:
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
         
         .cta-button {
             position: relative;
@@ -102,21 +148,6 @@
         .cta-button:hover {
             box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
             transform: translateY(-3px) scale(1.05);
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
         }
         
         .gradient-text {
@@ -242,6 +273,28 @@
         .hero-title {
             animation: aura-pulse 4s ease-in-out infinite;
         }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #00F0FF;
+            color: #0F172A;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.7);
+        }
+        #back-to-top:hover {
+            transform: scale(1.1);
+            background: #008080;
+        }
     </style>
 </head>
 <body>
@@ -331,8 +384,8 @@
                     <p class="text-white text-sm mt-2">Clientes satisfechos</p>
                 </div>
                 <div class="counter-container text-center p-4 service-card rounded-xl reveal">
-                    <div class="text-3xl sm:text-4xl font-bold text-[#8A2BE2] counter-value" data-target="320">0%</div>
-                    <p class="text-white text-sm mt-2">ROI promedio</p>
+                    <div class="text-3xl sm:text-4xl font-bold text-[#8A2BE2] counter-value" data-target="98">0%</div>
+                    <p class="text-white text-sm mt-2">Satisfacción total en el último mes</p>
                 </div>
                 <div class="counter-container text-center p-4 service-card rounded-xl reveal">
                     <div class="text-3xl sm:text-4xl font-bold text-[#FF1493]">24/7</div>
@@ -438,8 +491,8 @@
                              <div class="rounded-lg overflow-hidden border-2 border-[#00F0FF] shadow-lg hover-shadow"><iframe src="https://vivasindolor.shop" class="w-full h-full" style="min-height: 400px; sm:min-height: 450px;" title="Viva Sin Dolor"></iframe></div>
                         </div>
                         <div class="md:w-1/2 lg:w-2/5">
-                            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">Viva Sin Dolor</h3>
-                            <p class="text-white opacity-80 text-base sm:text-lg">E-commerce de alto impacto para un producto de salud y bienestar. Diseñamos un embudo de ventas completamente optimizado para maximizar la tasa de conversión y reducir los costos de adquisición.</p>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 gradient-text">Viva Sin Dolor</h3>
+                            <p class="text-white opacity-80 text-base sm:text-lg">Una tienda en línea dedicada a un producto innovador para el alivio del dolor, diseñada para ofrecer una experiencia de compra fácil y segura.</p>
                         </div>
                     </div>
                 </div>
@@ -449,8 +502,8 @@
                              <div class="rounded-lg overflow-hidden border-2 border-[#8A2BE2] shadow-lg hover-shadow"><iframe src="https://weavyplus.github.io/web/" class="w-full h-full" style="min-height: 400px; sm:min-height: 450px;" title="Weavy Plus"></iframe></div>
                         </div>
                         <div class="md:w-1/2 lg:w-2/5">
-                            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">Weavy Plus</h3>
-                            <p class="text-white opacity-80 text-base sm:text-lg">Landing page para un servicio exclusivo de marketing. El diseño se centró en una estética moderna, limpia y persuasiva, con el objetivo principal de capturar leads de alto valor.</p>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 gradient-text">Weavy Plus</h3>
+                            <p class="text-white opacity-80 text-base sm:text-lg">Una landing page exclusiva para un servicio de marketing de alto nivel, enfocada en presentar los beneficios y capturar clientes potenciales de alto valor.</p>
                         </div>
                     </div>
                 </div>
@@ -460,8 +513,8 @@
                              <div class="rounded-lg overflow-hidden border-2 border-[#FF1493] shadow-lg hover-shadow"><iframe src="https://goprofishing.github.io/web/" class="w-full h-full" style="min-height: 400px; sm:min-height: 450px;" title="GoPro Fishing"></iframe></div>
                         </div>
                         <div class="md:w-1/2 lg:w-2/5">
-                            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">GoPro Fishing</h3>
-                            <p class="text-white opacity-80 text-base sm:text-lg">Sitio web para una marca de accesorios de pesca, enfocado en mostrar productos de alta calidad y generar una comunidad de entusiastas.</p>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 gradient-text">GoPro Fishing</h3>
+                            <p class="text-white opacity-80 text-base sm:text-lg">Un sitio web para una marca de accesorios de pesca, creado para exhibir productos de primera calidad y construir una comunidad de aficionados a la pesca.</p>
                         </div>
                     </div>
                 </div>
@@ -492,20 +545,20 @@
                     <h3 class="text-3xl font-bold text-white mb-8 text-center md:text-left">Nuestro <span class="gradient-text">Equipo</span></h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         <div class="team-member rounded-xl p-6 sm:p-8 text-center">
-                            <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto bg-gradient-to-br from-[#00F0FF] to-[#8A2BE2] rounded-full mb-6 flex items-center justify-center overflow-hidden relative">
-                                <div class="absolute inset-0 bg-gradient-to-br from-[#00F0FF] to-[#8A2BE2] opacity-70"></div><i class="fas fa-user text-5xl text-white relative z-10"></i>
+                            <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full mb-6 overflow-hidden relative border-4 border-[#00F0FF]">
+                                <img src="https://i.imgur.com/3bnQizx.png" alt="Foto de Axel de la Rosa" class="w-full h-full object-cover">
                             </div>
                             <h4 class="text-2xl font-bold text-white mb-2">Axel de la Rosa</h4>
                             <p class="text-[#00F0FF] text-lg mb-4">CEO & Fundador</p>
-                            <p class="text-white opacity-80 mb-6">Ing. en TI revolucionando el marketing para marcas globales. Especialista en estrategias disruptivas.</p>
+                            <p class="text-white opacity-80 mb-6">Ing. en Tecnologias de la Informacion revolucionando el marketing para marcas globales. Especialista en estrategias disruptivas.</p>
                         </div>
                         <div class="team-member rounded-xl p-6 sm:p-8 text-center">
-                            <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto bg-gradient-to-br from-[#8A2BE2] to-[#FF1493] rounded-full mb-6 flex items-center justify-center overflow-hidden relative">
-                                <div class="absolute inset-0 bg-gradient-to-br from-[#8A2BE2] to-[#FF1493] opacity-70"></div><i class="fas fa-user text-5xl text-white relative z-10"></i>
+                            <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full mb-6 overflow-hidden relative border-4 border-[#8A2BE2]">
+                                <img src="https://i.imgur.com/cngVfI2.png" alt="Foto de Jared Ortiz" class="w-full h-full object-cover">
                             </div>
                             <h4 class="text-2xl font-bold text-white mb-2">Jared Ortiz</h4>
-                            <p class="text-[#8A2BE2] text-lg mb-4">COO & Estratega Digital</p>
-                            <p class="text-white opacity-80 mb-6">Experto en optimización de procesos y escalado de campañas. Enfoque analítico que transforma.</p>
+                            <p class="text-[#8A2BE2] text-lg mb-4">COO & Tecnico</p>
+                            <p class="text-white opacity-80 mb-6">Experto en optimización de procesos y escalado de campañas. Tecnico oficial de reparaciones de dispositivos celulares.</p>
                         </div>
                     </div>
                 </div>
@@ -524,7 +577,7 @@
                 <div class="testimonial-card rounded-xl p-8 relative reveal">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 bg-gradient-to-br from-[#00F0FF] to-[#8A2BE2] rounded-full flex items-center justify-center mr-4"><span class="text-white font-bold text-xl">JV</span></div>
-                        <div><h4 class="text-xl font-bold text-white">Juan Velasco</h4><p class="text-[#00F0FF]">CEO, MexicanaDesign</p></div>
+                        <div><h4 class="text-xl font-bold text-white">Neftali Vazquez</h4><p class="text-[#00F0FF]">Terapeuta, Quiropractico</p></div>
                     </div>
                     <div class="text-yellow-300 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-white opacity-80 mb-4">"Weavy Agency transformó completamente nuestra estrategia digital. En solo 3 meses, triplicamos nuestras ventas y redujimos el costo de adquisición en un 40%."</p>
@@ -542,7 +595,7 @@
                 <div class="testimonial-card rounded-xl p-8 relative reveal">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 bg-gradient-to-br from-[#FF8E6E] to-[#FF1493] rounded-full flex items-center justify-center mr-4"><span class="text-white font-bold text-xl">CS</span></div>
-                        <div><h4 class="text-xl font-bold text-white">Carlos Sanchez</h4><p class="text-[#FF8E6E]">Director, Freelances</p></div>
+                        <div><h4 class="text-xl font-bold text-white">Josias Barajas</h4><p class="text-[#FF8E6E]">Director, JB Real State</p></div>
                     </div>
                     <div class="text-yellow-300 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
                     <p class="text-white opacity-80 mb-4">"Lo que más valoro de Weavy es su transparencia. Siempre sé exactamente dónde va mi dinero y qué resultados está generando. Han convertido nuestro e-commerce en una máquina de ventas."</p>
@@ -645,6 +698,8 @@
             </div>
         </div>
     </footer>
+
+    <a id="back-to-top" href="#inicio"><i class="fas fa-arrow-up"></i></a>
     
     <script>
         // Animación al hacer scroll
@@ -712,6 +767,16 @@
                 }
             });
         });
+
+        // Botón de volver arriba
+        const backToTopButton = document.getElementById('back-to-top');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                backToTopButton.style.display = "flex";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
 
     </script>
 </body>
